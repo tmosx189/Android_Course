@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/holder_play_now_channel"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintRight_toLeftOf="@id/holder_play_now_timestamp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/holder_play_now_timestamp"
+        android:layout_width="wrap_content"
+        android:text="Hello world"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textStyle="bold"
+        android:maxLines="10"
+        android:ellipsize="marquee"
+        android:singleLine="false"
+        android:background="@android:color/black"
+        app:layout_constraintRight_toLeftOf="@id/holder_play_now_title"
+        app:layout_constraintLeft_toRightOf="@id/holder_play_now_channel"
+        app:layout_constraintTop_toTopOf="@id/holder_play_now_channel"
+        app:layout_constraintBottom_toBottomOf="@id/holder_play_now_channel"
+        tools:text="@string/app_name"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/holder_play_now_title"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/holo_blue_bright"
+        android:background="@android:color/black"
+        app:layout_constraintRight_toLeftOf="@id/holder_play_now_arrow"
+        app:layout_constraintLeft_toRightOf="@id/holder_play_now_timestamp"
+        app:layout_constraintTop_toTopOf="@id/holder_play_now_channel"
+        app:layout_constraintBottom_toBottomOf="@id/holder_play_now_channel"
+        tools:text="@string/app_name"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/holder_play_now_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/holder_play_now_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/holder_play_now_channel"
+        android:src="@mipmap/ic_launcher" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
