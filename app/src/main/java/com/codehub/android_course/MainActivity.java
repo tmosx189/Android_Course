@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.SimpleFormatter;
 
-public class MainActivity extends AbstractActivity {
+public class MainActivity extends AbstractActivity implements View.OnLongClickListener {
     @Nullable
     Toolbar toolbar;
     @Nullable
@@ -59,6 +61,17 @@ public class MainActivity extends AbstractActivity {
 //        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_alpha, 0));
 //        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_star, 0));
 //        adapter.submitList(data);
+        Button btn = findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar snackbar = Snackbar.make(v, R.string.app_name, Snackbar.LENGTH_SHORT);
+                snackbar.show();
+            }
+        });
+
+        Button btn1 = findViewById(R.id.btn2);
+        btn1.setOnLongClickListener(this);
 
         toolbar = findViewById(R.id.toolbar);
     }
@@ -133,4 +146,11 @@ public class MainActivity extends AbstractActivity {
 
 
     }
+
+    @Override
+    public boolean onLongClick(View v) {
+        Toast.makeText(this, this.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+        return  false;
+    }
+
 }
