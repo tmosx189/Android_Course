@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.SimpleFormatter;
@@ -32,6 +33,8 @@ import java.util.logging.SimpleFormatter;
 public class MainActivity extends AbstractActivity {
     @Nullable
     Toolbar toolbar;
+    @Nullable
+    RecyclerView recyclerView;
 
     @Override
     protected int getLayoutRes() {
@@ -40,21 +43,23 @@ public class MainActivity extends AbstractActivity {
 
     @Override
     public void initLayout() {
-        RecyclerView recyclerView = findViewById(R.id.recycler);
+        //RecyclerView recyclerView = findViewById(R.id.recycler);
 
-        Date timestamp = new Date(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
-
-        play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils());
-        recyclerView.setAdapter(adapter);
-
-        List<PlayNowString> data = new ArrayList<PlayNowString>();
-        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_ant1, 0));
-        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_alpha, 0));
-        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_star, 0));
+//        Date timestamp = new Date(System.currentTimeMillis());
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+//
+//        play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils());
+//        if(recyclerView != null){
+//            recyclerView.setAdapter(adapter);
+//        }
 
 
-        adapter.submitList(data);
+//        List<ChannelsModel> data = new ArrayList<ChannelsModel>();
+//        data.add(new ChannelsModel("teo",sdf.format(timestamp), R.drawable.ic_channel_ant1, 0));
+//        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_alpha, 0));
+//        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_star, 0));
+//        adapter.submitList(data);
+
         toolbar = findViewById(R.id.toolbar);
     }
 
@@ -84,20 +89,47 @@ public class MainActivity extends AbstractActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://tv-zapping.herokuapp.com/v2/tv";
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        //textView.setText("Response is: "+ response.substring(0,500));
-                        Log.i("Response",response);
-                    }
-                }, new Response.ErrorListener() {
+        GsonRequest<ProgramModel> gsonRequest = new GsonRequest<ProgramModel>(url, ProgramModel.class, new HashMap<String, String>(), new Response.Listener<ProgramModel>() {
+            @Override
+            public void onResponse(ProgramModel response) {
+
+                if(recyclerView == null) {
+                   return;
+                }
+
+                RecyclerView.Adapter usedAdapter = recyclerView.getAdapter();
+                if(usedAdapter instanceof play_now_adapter){
+                    ((play_now_adapter) usedAdapter).submitList(response.getChannels());
+                }else{
+                    play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils());
+                    recyclerView.setAdapter(adapter);
+                    adapter.submitList(response.getChannels());
+                }
+               // Log.i("RESPONSE", response.toString());
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(gsonRequest);
+
+        // Request a string response from the provided URL.
+       // StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+     //           new Response.Listener<String>() {
+      //              @Override
+      //              public void onResponse(String response) {
+      //                  // Display the first 500 characters of the response string.
+       //                 //textView.setText("Response is: "+ response.substring(0,500));
+       //                 Log.i("Response",response);
+       //             }
+       //         }, new Response.ErrorListener() {
+       //     @Override
+       //     public void onErrorResponse(VolleyError error) {
                 //textView.setText("That didn't work!");
-            }});
+       //     }});
 
 
     }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class play_now_adapter extends ListAdapter<PlayNowString, PlayNowHolder> {
+public class play_now_adapter extends ListAdapter<ChannelsModel, PlayNowHolder> {
 
     protected play_now_adapter(@NonNull DiffUtil.ItemCallback diffCallback) {
         super(diffCallback);
@@ -29,7 +29,7 @@ public class play_now_adapter extends ListAdapter<PlayNowString, PlayNowHolder> 
     }
 
     @Override
-    protected PlayNowString getItem(int position) {
+    protected ChannelsModel getItem(int position) {
         return super.getItem(position);
     }
 

@@ -17,14 +17,14 @@ public class PlayNowHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public void bind(PlayNowString data){
+    public void bind(ChannelsModel data){
         TextView textView = itemView.findViewById(R.id.holder_play_now_title);
-        textView.setText(data.getVar1());
+        textView.setText(data.getChannelName());
 
         TextView textView1 = itemView.findViewById(R.id.holder_play_now_timestamp);
-        textView1.setText(data.getVar2());
+        textView1.setText(data.getShows().get(0).getStartTimeCaption());
 
-        ImageView imageView1 = itemView.findViewById(R.id.holder_play_now_channel);
-        imageView1.setImageResource(data.getVar3());
+        //ImageView imageView1 = itemView.findViewById(R.id.holder_play_now_channel);
+       // imageView1.setImageResource(data.getVar3());
     }
 }
