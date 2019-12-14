@@ -53,4 +53,16 @@ public class ChannelsModel {
 
         return 0;
     }
+
+    public int getDrawableIcon(){
+        if(channelName.equals("ΒΟΥΛΗ"))
+        {return R.drawable.ic_channel_vouli;}
+        else if (channelName.equals("ΕΡΤ1"))
+        {return R.drawable.ic_channel_ert1;}
+        else if (channelName.equals("ΕΡΤ2"))
+        {return R.drawable.ic_channel_ert2;}
+        else{return R.mipmap.ic_launcher;}
+
+    }
+
 }

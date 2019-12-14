@@ -45,22 +45,8 @@ public class MainActivity extends AbstractActivity implements View.OnLongClickLi
 
     @Override
     public void initLayout() {
-        //RecyclerView recyclerView = findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
 
-//        Date timestamp = new Date(System.currentTimeMillis());
-//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
-//
-//        play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils());
-//        if(recyclerView != null){
-//            recyclerView.setAdapter(adapter);
-//        }
-
-
-//        List<ChannelsModel> data = new ArrayList<ChannelsModel>();
-//        data.add(new ChannelsModel("teo",sdf.format(timestamp), R.drawable.ic_channel_ant1, 0));
-//        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_alpha, 0));
-//        data.add(new PlayNowString("teo",sdf.format(timestamp), R.drawable.ic_channel_star, 0));
-//        adapter.submitList(data);
         Button btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,28 +114,21 @@ public class MainActivity extends AbstractActivity implements View.OnLongClickLi
         });
 
         queue.add(gsonRequest);
-
-        // Request a string response from the provided URL.
-       // StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-     //           new Response.Listener<String>() {
-      //              @Override
-      //              public void onResponse(String response) {
-      //                  // Display the first 500 characters of the response string.
-       //                 //textView.setText("Response is: "+ response.substring(0,500));
-       //                 Log.i("Response",response);
-       //             }
-       //         }, new Response.ErrorListener() {
-       //     @Override
-       //     public void onErrorResponse(VolleyError error) {
-                //textView.setText("That didn't work!");
-       //     }});
-
-
     }
 
     @Override
     public boolean onLongClick(View v) {
-        Toast.makeText(this, this.getString(R.string.app_name), Toast.LENGTH_LONG).show();
+        String name = "";
+
+        if(v.getId()==R.id.btn ){
+            name = "Vassilis";
+        }
+        else{
+            name = this.getString(R.string.app_name);
+        }
+
+        Toast.makeText(this, name, Toast.LENGTH_LONG).show();
+        //tell the os that its code will run
         return  false;
     }
 

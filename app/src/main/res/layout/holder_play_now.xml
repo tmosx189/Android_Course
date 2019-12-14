@@ -53,6 +53,7 @@
         app:layout_constraintLeft_toRightOf="@id/holder_play_now_title"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/holder_play_now_channel"
-        android:src="@mipmap/ic_launcher" />
+        app:layout_constraintBottom_toBottomOf="@id/holder_play_now_channel"
+        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
