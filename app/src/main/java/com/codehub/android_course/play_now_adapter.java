@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class play_now_adapter extends ListAdapter<ChannelsModel, PlayNowHolder> {
 
-    protected play_now_adapter(@NonNull DiffUtil.ItemCallback diffCallback) {
+    public ItemClickListener listener;
+
+    protected play_now_adapter(@NonNull DiffUtil.ItemCallback diffCallback, ItemClickListener listener) {
         super(diffCallback);
     }
 
@@ -20,7 +22,7 @@ public class play_now_adapter extends ListAdapter<ChannelsModel, PlayNowHolder> 
     public PlayNowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
 
-        return new PlayNowHolder(view);
+        return new PlayNowHolder(view, listener);
     }
 
     @Override

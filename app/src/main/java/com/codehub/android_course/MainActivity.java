@@ -100,7 +100,12 @@ public class MainActivity extends AbstractActivity implements View.OnLongClickLi
                 if(usedAdapter instanceof play_now_adapter){
                     ((play_now_adapter) usedAdapter).submitList(response.getChannels());
                 }else{
-                    play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils());
+                    play_now_adapter adapter = new play_now_adapter(new PlayNowDiffUtils(), new ItemClickListener() {
+                        @Override
+                        public void onItemClick(View v) {
+                            
+                        }
+                    });
                     recyclerView.setAdapter(adapter);
                     adapter.submitList(response.getChannels());
                 }

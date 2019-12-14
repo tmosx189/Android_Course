@@ -6,14 +6,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PlayNowHolder extends RecyclerView.ViewHolder {
 
+    public ItemClickListener listener;
 
-    public PlayNowHolder(@NonNull View itemView) {
+    public PlayNowHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
         super(itemView);
     }
 
@@ -28,6 +30,5 @@ public class PlayNowHolder extends RecyclerView.ViewHolder {
         imageView1.setImageResource(data.getDrawableIcon());
 
         ImageView imageView2 = itemView.findViewById(R.id.holder_play_now_arrow);
-
     }
 }
